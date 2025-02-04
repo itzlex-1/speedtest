@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
-            transition: background 0.5s ease-in-out;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
         }
         .container {
             background: rgba(255, 255, 255, 0.8);
@@ -33,6 +33,13 @@
         }
         button:hover {
             background: #218838;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        p {
+            font-size: 1.2em;
         }
     </style>
 </head>
@@ -69,6 +76,7 @@
                         <p>💨 Wind Speed: ${data.wind.speed} m/s</p>
                     `;
 
+                    // Change theme based on weather conditions
                     changeTheme(data.weather[0].main);
                 } else {
                     document.getElementById("weatherResult").innerHTML = `<p style="color:red;">Location not found. Try another city or province.</p>`;
@@ -84,21 +92,27 @@
             switch (weather.toLowerCase()) {
                 case "clear":
                     body.style.background = "url('https://source.unsplash.com/1600x900/?sunny') no-repeat center center/cover";
+                    body.style.color = "black";
                     break;
                 case "clouds":
                     body.style.background = "url('https://source.unsplash.com/1600x900/?cloudy') no-repeat center center/cover";
+                    body.style.color = "white";
                     break;
                 case "rain":
                     body.style.background = "url('https://source.unsplash.com/1600x900/?rain') no-repeat center center/cover";
+                    body.style.color = "white";
                     break;
                 case "snow":
                     body.style.background = "url('https://source.unsplash.com/1600x900/?snow') no-repeat center center/cover";
+                    body.style.color = "black";
                     break;
                 case "thunderstorm":
                     body.style.background = "url('https://source.unsplash.com/1600x900/?thunderstorm') no-repeat center center/cover";
+                    body.style.color = "white";
                     break;
                 default:
                     body.style.background = "url('https://source.unsplash.com/1600x900/?weather') no-repeat center center/cover";
+                    body.style.color = "black";
                     break;
             }
         }
