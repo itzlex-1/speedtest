@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,11 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f0f0f0;
             padding: 20px;
+            transition: background 0.5s ease-in-out;
         }
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             max-width: 350px;
             margin: auto;
@@ -36,7 +36,7 @@
         }
     </style>
 </head>
-<body>
+<body id="weatherBody">
 
     <div class="container">
         <h2>🌤 Weather App</h2>
@@ -68,6 +68,8 @@
                         <p>☁ Weather: ${data.weather[0].description}</p>
                         <p>💨 Wind Speed: ${data.wind.speed} m/s</p>
                     `;
+
+                    changeTheme(data.weather[0].main);
                 } else {
                     document.getElementById("weatherResult").innerHTML = `<p style="color:red;">Location not found. Try another city or province.</p>`;
                 }
@@ -75,7 +77,32 @@
                 console.error("Error fetching weather data:", error);
             }
         }
+
+        function changeTheme(weather) {
+            const body = document.getElementById("weatherBody");
+
+            switch (weather.toLowerCase()) {
+                case "clear":
+                    body.style.background = "url('https://source.unsplash.com/1600x900/?sunny') no-repeat center center/cover";
+                    break;
+                case "clouds":
+                    body.style.background = "url('https://source.unsplash.com/1600x900/?cloudy') no-repeat center center/cover";
+                    break;
+                case "rain":
+                    body.style.background = "url('https://source.unsplash.com/1600x900/?rain') no-repeat center center/cover";
+                    break;
+                case "snow":
+                    body.style.background = "url('https://source.unsplash.com/1600x900/?snow') no-repeat center center/cover";
+                    break;
+                case "thunderstorm":
+                    body.style.background = "url('https://source.unsplash.com/1600x900/?thunderstorm') no-repeat center center/cover";
+                    break;
+                default:
+                    body.style.background = "url('https://source.unsplash.com/1600x900/?weather') no-repeat center center/cover";
+                    break;
+            }
+        }
     </script>
 
-
-</body></html>
+</body>
+</html>
